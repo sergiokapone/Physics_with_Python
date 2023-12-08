@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from turtle import Turtle, Screen
 from math import pi, cos
 from timeit import default_timer as timer
@@ -8,28 +6,31 @@ from timeit import default_timer as timer
 # %% class
 class Body(Turtle):
     """
-    Oscilating bodies.
-    Amplitude - Object Amplitude
+    Oscillating bodies.
+    amplitude - Object Amplitude
     omega     - Object Angular Velocity
     phi       - Phase Shift
     k1        - x Coordinate Angular Velocity amplifier
     k2        - y Coordinate Angular Velocity amplifier
     """
 
-    def __init__(self, Amplitude=100, omega=1, k1=1, k2=1, phi=pi / 2):
+    def __init__(self, amplitude: int = 100, omega: int = 1,
+                 k1: int = 1, k2: int = 1,
+                 phi: float = pi / 2) -> None:
+
         Turtle.__init__(self)
-        self.Amplitude = Amplitude
-        self.omega = omega
-        self.k1 = k1
-        self.k2 = k2
-        self.phi = phi
+        self.Amplitude: int = amplitude
+        self.omega: int = omega
+        self.k1: int = k1
+        self.k2: int = k2
+        self.phi: float = phi
 
 
-timer_t = Turtle(visible=False)
+timer_t: Turtle = Turtle(visible=False)
 timer_t.penup()
 timer_t.setposition(300, 300)
 
-global screen
+# global screen
 screen = Screen()
 screen.tracer(0)
 
@@ -45,7 +46,7 @@ def loop(bodies):
         body.shape("circle")
         body.speed(1)
 
-    t0 = timer()  # strange nonzeroth starting value of time
+    t0 = timer()  # strange nonzero starting value of time
     while True:
         time = timer() - t0
         for body in bodies:
@@ -66,32 +67,32 @@ def loop(bodies):
 # %% Axis Draw
 
 
-def AxisDraw(axis, maxval):
+def axis_draw(axis, max_val) -> None:
     """
     Drawing Cartesian coordinates
     """
     axis.speed(0)
-    axis.setposition(0, -maxval)
-    axis.goto(0, maxval)
+    axis.setposition(0, -max_val)
+    axis.goto(0, max_val)
     axis.penup()
-    axis.setposition(-maxval, 0)
+    axis.setposition(-max_val, 0)
     axis.pendown()
-    axis.goto(maxval, 0)
+    axis.goto(max_val, 0)
 
 
-# %% Main fumnction
+# %% Main function
 
 
 def main():
     global screen
     screen = Screen()
-    axis = Turtle(visible=False)
-    AxisDraw(axis, 300)
+    axis: Turtle = Turtle(visible=False)
+    axis_draw(axis, 300)
 
-    body1 = Body(Amplitude=200, omega=1, k1=1, k2=2, phi=0)
+    body1: Body = Body(amplitude=200, omega=1, k1=1, k2=2, phi=0)
     body1.color("red")
 
-    body2 = Body(Amplitude=200, omega=1, k1=1, k2=2, phi=pi / 2)
+    body2: Body = Body(amplitude=200, omega=1, k1=1, k2=2, phi=pi / 2)
     body2.color("blue")
 
     loop([body1, body2])
