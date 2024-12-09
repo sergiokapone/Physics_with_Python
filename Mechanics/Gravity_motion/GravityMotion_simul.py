@@ -72,4 +72,4 @@ comet.shapesize(0.1, 0.1, 0.1)
 comet.shape("circle")
 
 
-loop([sun, mercury, venus, earth, mars, comet])
+loop([sun, comet])
